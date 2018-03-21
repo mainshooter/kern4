@@ -5,10 +5,14 @@
 		<form method="post" enctype="multipart/form-data">
 			<input type="file" name="profile">
 			<br>
+			<input type="text" name="profile_name" placeholder="Uw naam">
+			<br>
+
 			<input type="submit" name="add">
 		</form>
 		<div class="avatar">
 			<img src="<?php echo getProfilePicture($_COOKIE['user_key']); ?>">
+			<span><?php echo getProfileName($_COOKIE['user_key']); ?></span>
 			<span class="badge"><?php echo getCountOfAllToDos($_COOKIE['user_key']) ?></span>
 		</div>
 		<ul class="list">

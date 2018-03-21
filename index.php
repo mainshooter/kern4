@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
 	else if (ISSET($_FILES['profile'])) {
-		addProfile($_FILES['profile'], $_COOKIE['user_key']);
+		addProfile($_FILES['profile'], $_POST['profile_name'], $_COOKIE['user_key']);
 	}
 
 }

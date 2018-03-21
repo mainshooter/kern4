@@ -89,7 +89,20 @@ function getProfilePicture($user_key) {
 	return('');
 }
 
-function addProfile($file, $user_key) {
+function getProfileName($user_key) {
+	$sql = "SELECT name FROM `users` WHERE `user_key`=:user_key";
+	$input = array(
+		"user_key" => $user_key,
+	);
+
+	$result = read_query($sql, $input);
+	if (!empty($result)) {
+		return($result[0]['name']);
+	}
+	return('');
+}
+
+function addProfile($file, $profileName, $user_key) {
 	$fileName = $file['name'];
 	$fileTempLocation = $file['tmp_name'];
 	$fileSize = $file['size'];
@@ -97,9 +110,10 @@ function addProfile($file, $user_key) {
 	if ($fileSize > 1) {
 		// We have a real file
 		$result = move_uploaded_file($fileTempLocation, 'resources/upload/' . $fileName);
-		$sql = "UPDATE `users` SET `profile_path`=:picture WHERE user_key=:user_key";
+		$sql = "UPDATE `users` SET `profile_path`=:picture, name=:name WHERE user_key=:user_key";
 		$input = array(
 			"user_key" => $user_key,
+			"name" => $profileName,
 			"picture" => $fileName,
 		);
 		query($sql, $input, connect());
