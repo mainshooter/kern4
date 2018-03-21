@@ -19,7 +19,7 @@ function newTask($user_key, $name, $conn)
 	global $alert;
 	// create a new task
 	$alert = "<style>
-		.alert {top: 30px;}
+		.alert {animation: alertMove 1.5s;}
 	</style>";
 }
 

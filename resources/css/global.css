@@ -1,10 +1,15 @@
 .alert {
 	position: fixed;
 	top: -30px;
-	transition: all 1.5s;
 	text-align: center;
 	width: 100%;
 	background-color: white;
+}
+@keyframes alertMove {
+    0%   {top: -30px;}
+    25%  {top: 30px;}
+    75%  {top: 30px}
+    100% {top: -30px;}
 }
 .avatar img {
 	width: 5em;

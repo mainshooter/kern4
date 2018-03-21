@@ -36,7 +36,7 @@
 		<form action="" method="POST">
 			<ul class="form-list">
 				<li>
-					<input type="text" maxlength="47" name="name" placeholder="" required>
+					<input type="text" maxlength="47" name="name" placeholder="" required autofocus>
 					<label>Type here..</label>
 				</li>
 				<input type="submit" value="Add">
