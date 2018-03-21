@@ -13,16 +13,17 @@
                 <a class="button-done" href="index.php?tid_done=<?= $item['id']; ?>">Mark as done</a>
                 <?php else: ?>
                 <a class="button-done" href="index.php?tid_undone=<?= $item['id']; ?>">Undone</a>
-                <?php endif; ?>	
+                <?php endif; ?>
 
 			</li>
-		<?php endforeach; ?>	
-		<?php endif; ?>								
+		<?php endforeach; ?>
+		<?php endif; ?>
 		</ul>
 		<form action="" method="POST">
 			<ul class="form-list">
 				<li>
-					<input type="text" maxlength="47" name="name" placeholder="Type here.." required>
+					<input type="text" maxlength="47" name="name" placeholder="" required>
+					<label>Type here..</label>
 				</li>
 				<input type="submit" value="Add">
 			</ul>
