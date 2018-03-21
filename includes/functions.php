@@ -211,7 +211,11 @@ function del($key = null)
 	}
 }
 function getCountOfAllToDos($userKey) {
-	$sql = "SELECT id FROM tasks WHERE user_key=" . $userKey . "";
+	$sql = "SELECT id FROM tasks WHERE user_key=" . $userKey . " AND done=0";
 	$todos = read_query($sql, array());
+
+	if (empty($todos)) {
+		return(0);
+	}
 	return(count($todos));
 }
