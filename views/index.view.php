@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>To Do.</h1>
+	<h1>To Do<span class="badge"><?php echo getCountOfAllToDos($_COOKIE['user_key']) ?></span></h1>
 	<div class="content">
 		<ul class="list">
 		<?php if ($data) : ?>

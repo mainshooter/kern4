@@ -3,13 +3,13 @@
 
 /**
  * Connect to database
- * 
+ *
  * @return mixed
  */
 function connect()
 {
 	try {
-		$conn = new PDO('mysql:host=' . config('database/host') . 
+		$conn = new PDO('mysql:host=' . config('database/host') .
 			            ';dbname=' . config('database/dbname'),
 			            config('database/username'),
 			            config('database/password'));
@@ -21,13 +21,28 @@ function connect()
 	}
 }
 
+function read_query($sql, $input) {
+	$conn = connect();
+
+	try {
+		$query = $conn->prepare($sql);
+		$query->execute($input);
+
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		return($result);
+	} catch (Exception $e) {
+		return ("Couldn't read: " . $e->getMessage());
+	}
+
+}
+
 
 /**
  * Query the database using prepared statments
- * 
+ *
  * @param  string $query
  * @param  array $bindings
- * @param  object $conn 
+ * @param  object $conn
  * @return mixed
  */
 function query($query, $bindings, $conn)
@@ -44,9 +59,9 @@ function query($query, $bindings, $conn)
 
 /**
  * Get all the results from a table
- * 
+ *
  * @param  string $table
- * @param  object $conn 
+ * @param  object $conn
  * @return mixed
  */
 function get($sql, $conn)

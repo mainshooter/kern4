@@ -31,6 +31,13 @@
   margin: 0 auto;
 	margin-bottom: 1em;
 }
+.badge {
+	font-size: 0.14em;
+	background-color: #3498db;
+	color: white;
+	border-radius: 42%;
+	padding: 0.6em;
+}
 
 body {
 	font-family: "Open Sans", sans-serif;
