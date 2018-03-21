@@ -25,6 +25,12 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+.logo {
+	width: 15em;
+  display: block;
+  margin: 0 auto;
+	margin-bottom: 1em;
+}
 
 body {
 	font-family: "Open Sans", sans-serif;
