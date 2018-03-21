@@ -1,6 +1,15 @@
 <div class="container">
-	<h1>To Do<span class="badge"><?php echo getCountOfAllToDos($_COOKIE['user_key']) ?></span></h1>
+	<h1>To Do</h1>
 	<div class="content">
+		<form method="post" enctype="multipart/form-data">
+			<input type="file" name="profile">
+			<br>
+			<input type="submit" name="add">
+		</form>
+		<div class="avatar">
+			<img src="<?php echo getProfilePicture($_COOKIE['user_key']); ?>">
+			<span class="badge"><?php echo getCountOfAllToDos($_COOKIE['user_key']) ?></span>
+		</div>
 		<ul class="list">
 		<?php if ($data) : ?>
 		<?php foreach($data as $item): ?>

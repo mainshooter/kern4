@@ -7,7 +7,7 @@
  * will include the required file at the specified path
  * Failing to do so, will halt ( stop ) the execution of the script
  * rising a Fatal Error and a Parse Error
- * 
+ *
  */
 require 'app.php';
 require 'models/user.php';
@@ -29,7 +29,7 @@ if (isset($_COOKIE[config('cookie/cookie_name')])) {
 	(isset($_GET['tid_undone'])) ? undoneTask($_COOKIE[config('cookie/cookie_name')], $_GET['tid_undone'], $conn) : false;
 
     // delete all tasks for the current user only if all tasks are already done
-	delTasks($_COOKIE[config('cookie/cookie_name')], $conn);	
+	delTasks($_COOKIE[config('cookie/cookie_name')], $conn);
 
 } else {
 	// create a new user
@@ -38,12 +38,18 @@ if (isset($_COOKIE[config('cookie/cookie_name')])) {
 
 //check if there is a form post request
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$name = escape(trim($_POST['name']));
+	if (ISSET($_POST['name'])) {
+		$name = escape(trim($_POST['name']));
 
-	if (!empty($name) && strlen($name) <= 47) {
-		// create a new task
-		newTask($_COOKIE[config('cookie/cookie_name')], $name, $conn);
+		if (!empty($name) && strlen($name) <= 47) {
+			// create a new task
+			newTask($_COOKIE[config('cookie/cookie_name')], $name, $conn);
+		}
 	}
+	else if (ISSET($_FILES['profile'])) {
+		addProfile($_FILES['profile'], $_COOKIE['user_key']);
+	}
+
 }
 
 // load the view and pass(if exists) some data

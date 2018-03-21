@@ -1,3 +1,12 @@
+
+.avatar img {
+	width: 5em;
+	border-radius: 100%;
+}
+.avatar {
+	    float: right;
+}
+
 .form-list {
 	background-color: #fff;
 }
@@ -32,11 +41,14 @@
 	margin-bottom: 1em;
 }
 .badge {
+	position: relative;
 	font-size: 0.14em;
 	background-color: #3498db;
 	color: white;
-	border-radius: 42%;
-	padding: 0.6em;
+	border-radius: 50px;
+	padding: 0.2em 1.2em;
+	top: 0em;
+	left: -8.5em;
 }
 
 body {
