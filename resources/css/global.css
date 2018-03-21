@@ -29,7 +29,7 @@
 body {
 	font-family: "Open Sans", sans-serif;
 	font-size: 1em;
-    background-color: #ef5350;
+  background-color: #ef5350;
 	/*background-color: #27ae60; */
 }
 
@@ -38,7 +38,6 @@ body {
 }
 
 h1 {
-	font-family: "Shadwows Into Light Two", cursive;
 	text-align: center;
 	font-size: 7em;
 	margin-top: 10px;
@@ -119,7 +118,6 @@ form {
 }
 
 .form-list input[type="submit"] {
-	font-family: "Shadwows Into Light Two", cursive;
 	font-size: 1em;
 	background: #FFF;
 	border: 1px solid #DDD;
