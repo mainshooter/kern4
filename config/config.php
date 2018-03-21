@@ -4,9 +4,9 @@ return [
     'database' => [
         'connection' => true,
         'host'       => 'localhost',
-        'username'   => 'root',
-        'password'   => '',
-        'dbname'     => 'todo'
+        'username'   => 'kerntaak',
+        'password'   => 'kerntaak',
+        'dbname'     => 'kerntaak'
     ],
 
     'view'    => [
