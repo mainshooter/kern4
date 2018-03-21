@@ -1,10 +1,17 @@
-
+.alert {
+	position: fixed;
+	top: -30px;
+	transition: all 1.5s;
+	text-align: center;
+	width: 100%;
+	background-color: white;
+}
 .avatar img {
 	width: 5em;
 	border-radius: 100%;
 }
 .avatar {
-	    float: right;
+	float: right;
 }
 
 .form-list {

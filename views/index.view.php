@@ -1,3 +1,4 @@
+<?php global $alert; echo $alert; ?>
 <div class="container">
 	<h1>To Do</h1>
 	<div class="content">

@@ -1,5 +1,7 @@
 <?php
-
+$alert = '<style>
+	.alert {top: -30px;}
+</style>;';
 /**
  * Includes the main app file
  *
@@ -38,11 +40,15 @@ if (isset($_COOKIE[config('cookie/cookie_name')])) {
 
 //check if there is a form post request
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
 	if (ISSET($_POST['name'])) {
 		$name = escape(trim($_POST['name']));
-
 		if (!empty($name) && strlen($name) <= 47) {
+			global $alert;
 			// create a new task
+			$alert = "<style>
+				.alert {top: 30px;}
+			</style>";
 			newTask($_COOKIE[config('cookie/cookie_name')], $name, $conn);
 		}
 	}
@@ -51,6 +57,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 }
-
 // load the view and pass(if exists) some data
 view('index', $data);

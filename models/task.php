@@ -2,12 +2,12 @@
 
 /**
  * Create a new task
- * 
+ *
  * @param  string $user_key
- * @param  string $name  
- * @param  object $conn 
+ * @param  string $name
+ * @param  object $conn
  */
-function newTask($user_key, $name, $conn) 
+function newTask($user_key, $name, $conn)
 {
 	query("INSERT INTO tasks (user_key, name) VALUES (:user_key, :name)",
 		  [
@@ -15,19 +15,24 @@ function newTask($user_key, $name, $conn)
 		      'name'      => $name,
 		  ], $conn);
 
-	redirect('index');
+	// redirect('index');
+	global $alert;
+	// create a new task
+	$alert = "<style>
+		.alert {top: 30px;}
+	</style>";
 }
 
 /**
  * Get all user's tasks
- * 
+ *
  * @param  string $user_key
- * @param  string $conn  
+ * @param  string $conn
  * @return array
  */
-function getTasks($user_key, $conn) 
+function getTasks($user_key, $conn)
 {
-	$result = query("SELECT * FROM tasks WHERE user_key = :user_key ORDER BY id ASC", 
+	$result = query("SELECT * FROM tasks WHERE user_key = :user_key ORDER BY id ASC",
 		            [':user_key' => $user_key], $conn);
 
 	if ($result) {
@@ -37,19 +42,19 @@ function getTasks($user_key, $conn)
 
 		if ($count_records > 0) {
 			return $row;
-		}		
+		}
 	}
 
 }
 
 /**
  * Mark task as done
- * 
+ *
  * @param  string $user_key
- * @param  string $task_id 
- * @param  object $conn  
+ * @param  string $task_id
+ * @param  object $conn
  */
-function markTaskAsDone($user_key, $task_id, $conn) 
+function markTaskAsDone($user_key, $task_id, $conn)
 {
 	//task id from url
 	$task_id = (int) escape($task_id);
@@ -75,12 +80,12 @@ function markTaskAsDone($user_key, $task_id, $conn)
 
 /**
  * Undone a task
- * 
+ *
  * @param  string $user_key
- * @param  string $task_id 
- * @param  object $conn  
+ * @param  string $task_id
+ * @param  object $conn
  */
-function undoneTask($user_key, $task_id, $conn) 
+function undoneTask($user_key, $task_id, $conn)
 {
 	// taks id from the url
 	$task_id = (int) escape($task_id);
@@ -93,7 +98,7 @@ function undoneTask($user_key, $task_id, $conn)
 
 		if ($row['id'] != $task_id) {
 			redirect('index');
-		} 
+		}
 
 		// update done in tasks's table for the current user, only if done = 1
 		$result = query("UPDATE tasks SET done = :done WHERE id = :task_id AND done = :updone",
@@ -101,16 +106,16 @@ function undoneTask($user_key, $task_id, $conn)
 		if ($result) {
 			redirect('index');
 		}
-	}	
+	}
 }
 
 /**
  * Delete all tasks for the curent user if all tasks are done
- * 
- * @param  string $user_key 
- * @param  object $conn  
+ *
+ * @param  string $user_key
+ * @param  object $conn
  */
-function delTasks($user_key, $conn) 
+function delTasks($user_key, $conn)
 {
 	// grab the number of the total taks from tasks table
 	$result = query("SELECT COUNT($user_key) AS total_tasks FROM tasks WHERE user_key = :user_key",
@@ -130,7 +135,7 @@ function delTasks($user_key, $conn)
 		                [':user_key' => $user_key, ':done' => 1], $conn);
 
 		// fetch the results
-	    $row = $result->fetch();  
+	    $row = $result->fetch();
 
 	    // check results if are valid
 	    if($row['total_tasks_done']) {
@@ -145,8 +150,8 @@ function delTasks($user_key, $conn)
 
 		        //delete all the tasks, because all are already done
 	            query("DELETE FROM tasks WHERE user_key = :user_key ",
-	            	            [':user_key' => $user_key], $conn);	    		
+	            	            [':user_key' => $user_key], $conn);
 	    	}
-	    }           	
+	    }
 	}
 }

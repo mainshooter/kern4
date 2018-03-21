@@ -32,6 +32,7 @@
 </head>
 
 <body>
+		<div class="alert">Dit is onze alert</div>
 		<img class="logo" src="resources/img/logo.png">
     <?php require $content; ?>
 </body>
